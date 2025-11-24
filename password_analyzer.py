@@ -20,7 +20,6 @@ def analyze_password_strength(password: str) -> Tuple[int, List[str], str]:
     score = 0
     feedback = []
 
-    # 1. --- Length Check (Base Score) ---
     if len(password) >= MIN_LENGTH:
         score += 30
     elif len(password) >= 8:
@@ -29,40 +28,33 @@ def analyze_password_strength(password: str) -> Tuple[int, List[str], str]:
     else:
         feedback.append("Critical: Password is too short (less than 8 characters).")
 
-    # 2. --- Complexity Checks (Add points for variety) ---
     
-    # Uppercase letters (A-Z)
     if re.search(r"[A-Z]", password):
         score += 20
     else:
         feedback.append("Weak: Add uppercase letters (A-Z).")
 
-    # Lowercase letters (a-z)
     if re.search(r"[a-z]", password):
         score += 20
     else:
         feedback.append("Weak: Add lowercase letters (a-z).")
 
-    # Numbers (0-9)
     if re.search(r"\d", password):
         score += 20
     else:
         feedback.append("Weak: Add numbers (0-9).")
 
-    # Special characters (!@#$%^&*)
     if re.search(r"[!@#$%^&*()_+=\-{}[\]|\\:;\"'<>,.?/`~]", password):
         score += 20
     else:
         feedback.append("Weak: Add special characters (e.g., !, @, #).")
 
-    # 3. --- Blacklist Check (Override Score) ---
     if password.lower() in [wp.lower() for wp in WEAK_PASSWORDS]:
         score = 0  # CRITICAL failure
         feedback = ["CRITICAL: Password is on the common/breached password list!"]
         strength_rating = "Very Weak"
         return score, feedback, strength_rating
 
-    # 4. --- Determine Final Rating ---
     if score >= MIN_SCORE:
         strength_rating = "Strong"
     elif score >= 70:
@@ -104,4 +96,5 @@ def main():
         print("-" * 35)
 
 if __name__ == "__main__":
+
     main()
