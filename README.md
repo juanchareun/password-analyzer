@@ -49,13 +49,12 @@ Shows a high score and "Strong" rating based on variety and length.
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/juanchareun/Portfolio.git](https://github.com/juanchareun/Portfolio.git)
+    git clone https://github.com/juanchareun/password-analyzer.git
     ```
 2.  **Navigate to the script directory:**
     ```bash
-    cd Portfolio/path/to/password-analyzer
+    cd password-analyzer
     ```
-    *(Note: Adjust the path above if the script is not in a dedicated subfolder.)*
 
 ### How to Run
 
@@ -63,3 +62,4 @@ Execute the script directly from your terminal:
 
 ```bash
 python password_analyzer.py
+
